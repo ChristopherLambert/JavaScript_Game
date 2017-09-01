@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> Animação </title>
+	<script>
+	  console.log("Developer: Christopher Lambert");
+	</script>
+
+	<script src = "jquery-3.2.1.min.js"></script>
+	<script src = "sprite.js"></script>
+
+	<style>
+	  canvas {
+	    position: absolute;
+		top: 0px;
+		bottom: 0px;
+		left: 0px;
+		right: 0px;
+		margin: auto;
+	  }
+	</style>
+
+</head>
+<body>
+
+<script>
+	var canvas, ctx, ALTURA, LARGURA, frames = 0;
+    var xSource = 0;
+    var ySource = 100;
+	
+	 function main(){
+		ALTURA = window.innerHeigth;
+		LARGURA = window.innerWidth;
+		if(LARGURA >= 500){
+			LARGURA = 1000;
+			ALTURA = 600;
+		}
+		
+		var canvas = document.createElement("canvas");
+		canvas.width = LARGURA;
+		canvas.height = ALTURA;
+		canvas.style.border = "1px solid #000";
+		canvas.setAttribute("id", "idCanvas");	
+		
+		ctx = canvas.getContext("2d");
+		document.body.appendChild(canvas);
+		
+		roda();//Loop do Animate 
+	 }
+	 
+	 function sleep(delay) {
+        var start = new Date().getTime();
+        while (new Date().getTime() < start + delay);
+      }
+
+	 function roda(){
+		window.requestAnimationFrame(roda);
+
+		ctx.fillStyle = 'blue';
+		ctx.fillRect(0,0,1000,600);
+		bird.desenha(xSource,ySource);
+		xSource += 2;
+
+		 if(xSource >= 1000){
+		 	xSource = 0;
+		 	ySource += 100;
+		 }
+	 }
+
+	 main();
+</script>
+
+</body>
+</html>
